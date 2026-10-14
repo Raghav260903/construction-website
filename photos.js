@@ -79,7 +79,7 @@
   function applyColor(c) {
     var st = S[cur]; if (!st.ok) return;
     st.color = c; markSwatch(); render();
-    if (clickMode() && !st.count) say('Colour set. Ippo <b>maatha vendiya wall mela click</b> pannunga.');
+    if (clickMode() && !st.count) say('Colour set. Now <b>tap the wall</b> you want to repaint.');
   }
   sw.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) applyColor(b.dataset.c); });
   picker.addEventListener('input', function () { applyColor(picker.value); });
@@ -260,12 +260,12 @@
   }
   cv.addEventListener('pointerdown', function (e) {
     var st = S[cur]; if (!st.ok || !(selecting || clickMode())) return;
-    if (!selecting && !st.color) { say('Munnadi mela irukkura <b>oru colour select</b> pannunga, appuram wall mela click pannunga.'); return; }
+    if (!selecting && !st.color) { say('First <b>pick a colour</b> from the swatches above, then tap the wall.'); return; }
     e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
     var p = pos(e); pushHist(st);
     if (tool === 'wand') { wand(st, p.x, p.y, !(e.shiftKey || e.altKey)); refresh(st); markSwatch(); render(); }
     else { painting = true; dab(st, p.x, p.y, tool === 'brush'); quickIdx(st); render(); }
-    if (!selecting) say('Wall full-a cover aagalana <b>Brush</b> use pannunga. Extra select aanaa <b>Eraser</b> / <b>Undo</b>.');
+    if (!selecting) say('If the wall is not fully covered, use <b>Brush</b>. If too much is coloured, use <b>Eraser</b> or <b>Undo</b>.');
   });
   cv.addEventListener('pointermove', function (e) {
     if (!painting) return; var p = pos(e); dab(S[cur], p.x, p.y, tool === 'brush'); quickIdx(S[cur]); render();
