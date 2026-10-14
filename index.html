@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bharath Constructions | Walk Through Your Home Before We Build It</title>
+  <meta name="description" content="Bharath Constructions, Chennai. Experience your dream home in VR before the first brick is laid." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="top">
+  <div class="container nav">
+    <a href="#top" class="logo" aria-label="Bharath Constructions">
+      <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path d="M3 15 16 4l13 11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 14v13h18V14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M13 27v-8h6v8" fill="none" stroke="var(--copper)" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      <span>Bharath<small>CONSTRUCTIONS</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#vr" class="vr-link"><span class="dot"></span>VR Preview</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#process">Process</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact" class="btn btn-copper btn-sm">Book a Slot</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" data-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=70"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">Chennai's first VR-preview builders</p>
+      <h1>See your home <em>before</em> it exists.</h1>
+      <p class="lead">Put on a headset, walk through every room, change finishes, and approve the design with confidence. Then we build exactly what you experienced.</p>
+      <div class="hero-cta">
+        <a href="#vr" class="btn btn-copper">Try the VR Walkthrough</a>
+        <a href="#projects" class="btn btn-ghost">Our Projects</a>
+      </div>
+      <ul class="hero-points">
+        <li><b>15+</b> Years building</li>
+        <li><b>500+</b> Happy families</li>
+        <li><b>0</b> Surprises after handover</li>
+      </ul>
+    </div>
+    <aside class="hero-card reveal">
+      <div class="headset">
+        <svg viewBox="0 0 120 70" aria-hidden="true"><rect x="6" y="12" width="108" height="46" rx="18" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="42" cy="35" r="11" fill="none" stroke="var(--copper)" stroke-width="3"/><circle cx="78" cy="35" r="11" fill="none" stroke="var(--copper)" stroke-width="3"/><path d="M52 35h16" stroke="currentColor" stroke-width="3"/></svg>
+      </div>
+      <h3>Virtual Site Visit</h3>
+      <p>Works on Meta Quest, VR box on your phone, or just your laptop browser.</p>
+      <a href="#vr" class="link-arrow">Start walking →</a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ VR HIGHLIGHT ============ -->
+<section class="vr" id="vr">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow light">Our signature experience</p>
+      <h2>Walk through your home in <span class="grad">virtual reality</span></h2>
+      <p>Before construction starts, we build a full 3D model of your home. You step inside, check room sizes, light, finishes and layout, and request changes while they cost nothing.</p>
+    </div>
+
+    <div class="vr-tabs reveal" role="tablist">
+      <button class="tab" id="tab3d" role="tab">🧊 3D Walkthrough</button>
+      <button class="tab active" id="tabPhoto" role="tab">📷 Real Photos</button>
+    </div>
+
+    <div class="vr-stage reveal">
+
+      <!-- ===== 3D walkthrough pane ===== -->
+      <div id="pane3d" hidden>
+        <div class="vr-toolbar">
+          <div class="vr-rooms" id="vrRooms">
+            <button class="chip active" data-room="outside">Exterior</button>
+            <button class="chip" data-room="porch">Sit-out</button>
+            <button class="chip" data-room="living">Living Room</button>
+            <button class="chip" data-room="dining">Dining</button>
+            <button class="chip" data-room="kitchen">Kitchen</button>
+            <button class="chip" data-room="bedroom">Master Bedroom</button>
+            <button class="chip" data-room="terrace">Terrace</button>
+          </div>
+          <div class="vr-tools">
+            <button class="tool" id="btnDay" title="Toggle day / night">☀ Day</button>
+            <button class="btn btn-copper btn-sm" id="btnEnterVR">🥽 Enter VR</button>
+          </div>
+        </div>
+        <div class="paint-row"><div class="paint-target" id="paintTarget"></div><span class="sw-label" id="swLabel"></span><div class="swatches" id="swatches"></div></div>
+
+        <div class="vr-canvas" id="vrCanvas">
+          <div class="vr-loading" id="vrLoading">Loading 3D model…</div>
+          <div class="vr-hint">Drag to look around · W A S D to walk · Pick a room, then pick its wall colour</div>
+        </div>
+      </div>
+
+      <!-- ===== Real photo pane ===== -->
+      <div id="panePhoto">
+        <div class="vr-toolbar">
+          <div class="vr-rooms" id="phRooms"></div>
+          <div class="vr-tools">
+            <button class="tool" id="phCompare" title="Hold to see the original photo">👁 Hold: Before</button>
+            <button class="tool" id="phSave">⬇ Save image</button>
+          </div>
+        </div>
+        <div class="paint-row" id="phPaint" hidden>
+          <span class="sw-label" id="phLabel">Wall colour:</span><div class="swatches" id="phSwatches"></div>
+          <button class="tool" id="phReset">Reset colour</button>
+        </div>
+
+        <!-- admin only: open index.html?admin -->
+        <div class="paint-row admin" id="phAdmin" hidden>
+          <strong>ADMIN</strong>
+          <button class="tool accent" id="phSelect">🖌 Select walls</button>
+          <button class="tool" id="phUndo">↩ Undo</button>
+          <button class="tool" id="phMask">⬇ Download wall mask</button>
+        </div>
+        <div class="paint-row" id="phSelTools" hidden>
+          <div class="seg" id="phToolBtns">
+            <button class="tool on" data-tool="wand">Wand</button>
+            <button class="tool" data-tool="brush">Brush</button>
+            <button class="tool" data-tool="eraser">Eraser</button>
+          </div>
+          <label class="range">Wand strength <input type="range" id="phTol" min="6" max="80" value="22"></label>
+          <label class="range">Brush size <input type="range" id="phBrush" min="4" max="70" value="22"></label>
+          <button class="tool" id="phClear">Clear</button>
+        </div>
+
+        <div class="ph-canvas" id="phStage">
+          <canvas id="phCanvas"></canvas>
+          <div class="ph-empty" id="phEmpty">Loading photos…</div>
+        </div>
+        <p class="ph-help" id="phMsg">Choose a room, <b>pick a colour</b>, then <b>click on a wall</b> in the photo to repaint it. Hold <b>Before</b> to compare with the original.</p>
+      </div>
+    </div>
+
+    <div class="vr-steps">
+      <article class="reveal"><span>01</span><h4>We model your plan</h4><p>Your drawings become an accurate 3D home with real dimensions and materials.</p></article>
+      <article class="reveal"><span>02</span><h4>You walk inside</h4><p>Visit us, or borrow a headset at home. Feel the scale of each room.</p></article>
+      <article class="reveal"><span>03</span><h4>Change it freely</h4><p>Move a wall, change tiles or colours. Decide now, not mid-construction.</p></article>
+      <article class="reveal"><span>04</span><h4>We build it exact</h4><p>The approved model becomes the build brief. What you saw is what you get.</p></article>
+    </div>
+
+    <p class="vr-note reveal">Using a headset? Open this page in the headset's browser, then press <b>Enter VR</b>. Works with Meta Quest, Pico and other WebXR devices.</p>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="strip">
+  <div class="container strip-grid">
+    <div>🏗️ Quality materials</div>
+    <div>⏱️ On-time handover</div>
+    <div>📋 Transparent pricing</div>
+    <div>🛡️ 10-year structural warranty</div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-copy reveal">
+      <p class="eyebrow">About us</p>
+      <h2>Building trust, one home at a time</h2>
+      <p>Bharath Constructions is a Chennai-based builder trusted by families across Tamil Nadu. Since 2010 we have built homes, apartments and offices across Chennai with engineers who stay on site and a process that keeps you informed at every stage.</p>
+      <p>Today we combine proven craftsmanship with VR design review, so your decisions are made with clarity and your budget stays protected.</p>
+      <a href="#contact" class="btn btn-green">Talk to our team</a>
+    </div>
+    <div class="about-media reveal">
+      <img data-src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=70" alt="Modern villa built by Bharath" />
+      <div class="stat-card">
+        <div><b data-count="15">0</b>+<small>Years</small></div>
+        <div><b data-count="500">0</b>+<small>Projects</small></div>
+        <div><b data-count="120">0</b>+<small>VR walkthroughs</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">What we build</p>
+      <h2>End-to-end construction services</h2>
+      <p>From the first sketch to the final handover.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal"><div class="ico">🏠</div><h3>Residential Construction</h3><p>Custom homes, villas and apartments built to your plan and budget.</p></article>
+      <article class="card reveal"><div class="ico">🏢</div><h3>Commercial Construction</h3><p>Offices, retail spaces and business buildings delivered on schedule.</p></article>
+      <article class="card reveal"><div class="ico">🔧</div><h3>Renovation & Remodeling</h3><p>Give your existing space a fresh look, with VR before-and-after previews.</p></article>
+      <article class="card reveal"><div class="ico">📐</div><h3>Architectural Design</h3><p>Functional, vastu-aware layouts shaped around how you live.</p></article>
+      <article class="card reveal"><div class="ico">🛋️</div><h3>Interior Design</h3><p>Elegant interiors you can walk through in VR before ordering a single item.</p></article>
+      <article class="card reveal"><div class="ico">🔑</div><h3>Turnkey Projects</h3><p>Complete management from approvals to keys in your hand.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="projects-head reveal">
+      <div class="section-head">
+        <p class="eyebrow">Our projects</p>
+        <h2>Completed work</h2>
+        <p>A look at recent homes and spaces we have delivered.</p>
+      </div>
+      <div class="filters" id="filters">
+        <button class="chip dark active" data-f="all">All</button>
+        <button class="chip dark" data-f="residential">Residential</button>
+        <button class="chip dark" data-f="commercial">Commercial</button>
+        <button class="chip dark" data-f="interior">Interior</button>
+      </div>
+    </div>
+    <div class="grid" id="projectGrid">
+      <figure class="proj" data-cat="residential"><img data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=70" alt="Modern Villa" /><figcaption><b>Modern Villa</b><span>Anna Nagar</span></figcaption></figure>
+      <figure class="proj" data-cat="residential"><img data-src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=70" alt="Luxury Apartment" /><figcaption><b>Luxury Apartment</b><span>OMR</span></figcaption></figure>
+      <figure class="proj" data-cat="commercial"><img data-src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70" alt="Office Space" /><figcaption><b>Office Space</b><span>Guindy</span></figcaption></figure>
+      <figure class="proj" data-cat="residential"><img data-src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=70" alt="Duplex Home" /><figcaption><b>Duplex Home</b><span>ECR</span></figcaption></figure>
+      <figure class="proj" data-cat="commercial"><img data-src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=70" alt="Residential Complex" /><figcaption><b>Residential Complex</b><span>Velachery</span></figcaption></figure>
+      <figure class="proj" data-cat="interior"><img data-src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=70" alt="Interior Design" /><figcaption><b>Interior Design</b><span>Adyar</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS / WHY ============ -->
+<section class="why" id="process">
+  <div class="why-bg" data-img="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=70"></div>
+  <div class="why-overlay"></div>
+  <div class="container why-grid">
+    <div class="reveal">
+      <p class="eyebrow light">Why Bharath</p>
+      <h2>Clear process. Honest numbers. Strong build.</h2>
+      <p class="lead">We combine experience, technology and a customer-first approach to deliver the best construction solutions.</p>
+    </div>
+    <div class="why-items">
+      <div class="reveal"><h4>Expert engineers</h4><p>Skilled professionals supervising every pour.</p></div>
+      <div class="reveal"><h4>Quality materials</h4><p>Only tested, branded materials and techniques.</p></div>
+      <div class="reveal"><h4>On-time delivery</h4><p>Milestone-based schedule you can track.</p></div>
+      <div class="reveal"><h4>Weekly updates</h4><p>Photos and progress reports every week.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testi" id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Testimonials</p>
+      <h2>What our clients say</h2>
+    </div>
+    <div class="cards three">
+      <blockquote class="card reveal"><p>"The VR walkthrough let us change the kitchen layout before construction. It saved us a lot of money and regret."</p><footer><span class="av">S</span><div><b>Suresh Kumar</b><small>Homeowner, Anna Nagar</small></div></footer><div class="stars">★★★★★</div></blockquote>
+      <blockquote class="card reveal"><p>"Excellent quality and on-time delivery. Their communication made the entire process stress-free."</p><footer><span class="av">P</span><div><b>Priya Menon</b><small>Business Owner, OMR</small></div></footer><div class="stars">★★★★★</div></blockquote>
+      <blockquote class="card reveal"><p>"Highly recommended. Seeing our home in VR first made approving the design so easy."</p><footer><span class="av">R</span><div><b>Ramesh Babu</b><small>Villa Owner, ECR</small></div></footer><div class="stars">★★★★★</div></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <p class="eyebrow light">Contact us</p>
+      <h2>Let's build something great together</h2>
+      <p class="lead">Share your plan and pick a time. We will visit your plot, prepare your quote and set up your VR walkthrough.</p>
+      <ul class="contact-list">
+        <li>📞 <a href="tel:+919876543210">+91 98765 43210</a></li>
+        <li>✉️ <a href="mailto:hello@bharath.example">hello@bharath.example</a></li>
+        <li>📍 123, Green Park Road, Anna Nagar, Chennai - 600040</li>
+      </ul>
+    </div>
+    <form class="form reveal" id="quoteForm" novalidate>
+      <h3>Book your site visit</h3>
+      <label>Name<input name="name" required placeholder="Your name" /></label>
+      <label>Email<input name="email" type="email" required placeholder="you@example.com" /></label>
+      <label>Phone<input name="phone" placeholder="+91" /></label>
+      <label>Project type
+        <select name="type"><option>Residential</option><option>Commercial</option><option>Renovation</option><option>Interior</option></select>
+      </label>
+      <label class="check"><input type="checkbox" name="vr" checked /> I'd like a VR walkthrough of my plan</label>
+      <label>Message<textarea name="msg" rows="3" placeholder="Tell us about your project"></textarea></label>
+      <button class="btn btn-copper full" type="submit">Confirm my slot</button>
+      <p class="form-msg" id="formMsg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container foot">
+    <a href="#top" class="logo light"><span>Bharath<small>CONSTRUCTIONS</small></span></a>
+    <nav><a href="#vr">VR Preview</a><a href="#about">About</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav>
+    <p>© <span id="yr"></span> Bharath Constructions. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+<script src="photos.js" defer></script>
+</body>
+</html>
